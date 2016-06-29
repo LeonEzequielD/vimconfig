@@ -1,0 +1,11 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =9
+let g:netrw_dirhist_1='/work/dmos-dmtdd/devel/dmos-vlan-manager/dmptinfo'
+let g:netrw_dirhist_2='/work/dmos-dmtdd/devel/dmos-vlan-manager/doc'
+let g:netrw_dirhist_3='/work/dmos-dmtdd/devel/dmos-vlan-manager/script'
+let g:netrw_dirhist_4='/work/dmos-dmtdd/devel/dmos-vlan-manager/test'
+let g:netrw_dirhist_5='/work/dmos-dmtdd/devel/dmos-vlan-manager/src/lib/client'
+let g:netrw_dirhist_6='/work/dmos-dmtdd/devel/dmos-vlan-manager/test/mocks'
+let g:netrw_dirhist_7='/work/dmos-dmtdd/devel/dmos-vlan-manager/test'
+let g:netrw_dirhist_8='/work/dmos-dmtdd/devel/dmos-vlan-manager/test/mocks'
+let g:netrw_dirhist_9='/work/dmos-dmtdd/devel/dmos-vlan-manager/src/tester/lib'

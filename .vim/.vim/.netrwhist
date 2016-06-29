@@ -1,0 +1,8 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =6
+let g:netrw_dirhist_1='/linuxppc/VIEWS/PD1214/SELF/build/application/PD1200/services/port_state_manager'
+let g:netrw_dirhist_2='/linuxppc/VIEWS/PD1214/SELF/build/application/PD1200/services/port_state_manager/src'
+let g:netrw_dirhist_3='/home/leon.ezequiel/DmOS-Example/test'
+let g:netrw_dirhist_4='/home/leon.ezequiel/DmOS-Example'
+let g:netrw_dirhist_5='/home/leon.ezequiel/DmOS-Example/test'
+let g:netrw_dirhist_6='/home/leon.ezequiel/DmOS-Example'

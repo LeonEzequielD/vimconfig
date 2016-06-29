@@ -10,5 +10,5 @@ if [ -d ~/.vim ]; then
 fi
 
 # create simlinks for the current dir
-ln -sf ${CURRENT_DIR}/vimrc ~/.vimrc
-ln -sf ${CURRENT_DIR}/vim ~/.vim
+ln -sf ${CURRENT_DIR}/.vimrc ~/.vimrc
+ln -sf ${CURRENT_DIR}/.vim ~/.vim

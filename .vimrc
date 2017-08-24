@@ -174,8 +174,8 @@ function FormatClangStyle()
     %pyf /usr/share/vim/addons/syntax/clang-format-3.5.py
 endfunction
 
-map <C-k> :%pyf /usr/share/vim/addons/syntax/clang-format-3.5.py<CR>
-imap <C-k> :%pyf /usr/share/vim/addons/syntax/clang-format-3.5.py<CR>
+map <C-k> :%py3f /usr/share/vim/addons/syntax/clang-format-4.0.py<CR>
+imap <C-k> :%py3f /usr/share/vim/addons/syntax/clang-format-4.0.py<CR>
 
 " Clear white spaces in file
 highlight ExtraWhitespace ctermbg=red guibg=red

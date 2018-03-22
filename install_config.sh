@@ -12,3 +12,6 @@ fi
 # create simlinks for the current dir
 ln -sf ${CURRENT_DIR}/.vimrc ~/.vimrc
 ln -sf ${CURRENT_DIR}/.vim ~/.vim
+
+git clone https://github.com/scrooloose/nerdtree.git ~/.vim/bundle/nerdtree
+git clone git://github.com/jiangmiao/auto-pairs.git ~/.vim/bundle/auto-pairs

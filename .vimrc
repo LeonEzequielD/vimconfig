@@ -3,54 +3,50 @@ syntax enable
 source $VIMRUNTIME/mswin.vim
 behave mswin
 set ignorecase            " ignore case in search patterns
-set wrap
-set tabstop=4             " number of space <tab> counts for
 set nocp
 filetype plugin on
 
 colorscheme darkblue
 
-"source /usr/share/vim/vim72/plugin/mark.vim
-"source /usr/share/vim/vim72/plugin/taglist.vim
-"source /usr/share/vim/vim72/plugin/supertab.vim
-"source /usr/share/vim/vim72/plugin/php-doc.vim
-
 execute pathogen#infect()
 
 highlight clear SpellBad
-
 highlight SpellBad term=reverse cterm=underline
 
 let g:DirDiffExcludes="CVS,*.class,*.exe,.*.swp,*.o,*.d,*.a,*.bb,*.bb,*.gcov"
-
-map # :grep <cword> **/*.[ch]<Return><Return>:copen<Return>
 
 map <F3> :TlistToggle <Return>
 map <F4> :NERDTreeToggle<Return>
 map <F5> <C-w>bj<Return>10<C-w>-
 
-
+"find possible wrong doings in C
 map <F12> /[^ =><!\&\|*/+-]=\\|=[^ =]\\|[^ -][><]\\| [><][^ =]\\|\(if(\)\\|\(while(\)\\|\(switch(\)\\|\(for(\)\\|\(do{\)\\|while.*(.*)\n[ \t]*{\\|switch.*(.*)\n[ \t]*{\\|if.*(.*)\n[ \t]*{\\|for.*(.*)\n[ \t]*{\\|else.*\n[ \t]*{\\|[,;][^ \t]\\|[ \t]\n<Esc><Return>:<Esc>
 imap <F12> <Esc> /[^ =><!\&\|*/+-]=\\|=[^ =]\\|[^ -][><]\\| [><][^ =]\\|\(if(\)\\|\(while(\)\\|\(switch(\)\\|\(for(\)\\|\(do{\)\\|while.*(.*)\n[ \t]*{\\|switch.*(.*)\n[ \t]*{\\|if.*(.*)\n[ \t]*{\\|for.*(.*)\n[ \t]*{\\|else.*\n[ \t]*{\\|[,;][^ \t]\\|[ \t]\n<Esc><Return>:<Esc>
 
-map <F11> :set wrap
-imap <F11> <Esc> :set nowrap
+"toggle between wrap and no wrap
+function WrapToggle()
+  if &wrap
+    set nowrap
+  else
+    set wrap
+  endif
+endfunction
+set wrap
+nmap <F11> mz:execute WrapToggle() <CR>
+imap <F11> <Esc> mz:execute WrapToggle() <CR>
 
-map <F9> :Rgrep
-imap <F9> <Esc>:Rgrep
-
-"set nowrap
+"Ctrl + PageUp / PageDown changes pages
 map <C-PageDown> :bnext <Return>
 map <C-PageUp> :bprev <Return>
 
-map <F8> :bd! <Return>
-
-" Procura a palavra sob o cursor nos arquivos .c e .h no diretorio atual e todos os seus subdiretorios."
-map <silent> <F7> :Rgrep -w <cword> *.c *.h *.cpp<CR><Return>
+" Find words in all files in project
+map <silent> <F7> :Rgrep -w <cword> *.c *.h *.cpp *.hpp<CR><Return>
 imap <F7>  <Esc><F7>
 
+" # - Dumb grep on a word
+map # :grep <cword> **/*.[ch]<Return><Return>:copen<Return>
+
 set hlsearch
-set noexpandtab tabstop=4 shiftwidth=4
 "set smarttab
 set autoindent
 filetype on
@@ -73,13 +69,6 @@ set tags+=tags
 "set tags+=../tags,../../tags,../../../tags,../../../../tags,../../../../../tags
 set shell=/bin/bash
 
-au BufNewFile,BufRead *.t2t set ft=txt2tags
-"au! BufNewFile,BufRead * let b:spell_language="brasileiro"
-
-" marca tabulações e espaços
-"set listchars=tab:>.,trail:.
-"set list
-
 "function MBTOn()
 "   nnoremap <silent> <F8> :call MBTOff()<CR>
  "  let g:miniBufExplorerMoreThanOne=0
@@ -97,10 +86,6 @@ au BufNewFile,BufRead *.t2t set ft=txt2tags
 
 aunmenu ToolBar.RunCtags
 amenu ToolBar.RunCtags :!ctags -R --exclude="_built/common/include/boost/*" .<CR>
-
-
-"set syntax as yang when opening *.yang files
-au BufNewFile,BufRead *.yang setf yang
 
 
 " Mappings for cscope
@@ -135,6 +120,8 @@ nmap <Leader><Leader><Leader>d :cs find d
 nmap ] :cs find g  <cword><CR>
 nmap [ <C-o>
 
+
+" Automatically find and load Cscope databases
 function! LoadCscope()
   let db = findfile("cscope.out", ".;")
   if (!empty(db))
@@ -145,14 +132,13 @@ function! LoadCscope()
   endif
 endfunction
 
-" Automatically find and load Cscope databases
 au BufEnter /* call LoadCscope()
 
-" virtual tabstops using spaces
+"toggle between local and default mode
+set tabstop=4
 set shiftwidth=4
 set softtabstop=4
 set expandtab
-" allow toggling between local and default mode
 function TabToggle()
   if &expandtab
     set shiftwidth=4
@@ -164,18 +150,26 @@ function TabToggle()
     set expandtab
   endif
 endfunction
-nmap <F2> mz:execute TabToggle()<CR>'z
+nmap <F2> mz:execute TabToggle()<CR>
 
+"doxygen syntax
 let g:load_doxygen_syntax=1
 au BufRead,BufNewFile *.dox setfiletype doxygen
 
+"yang syntax
+au BufNewFile,BufRead *.yaml,*.yml so ~/.vim/yaml.vim
 
-function FormatClangStyle()
-    %pyf /usr/share/vim/addons/syntax/clang-format-3.5.py
-endfunction
+"txt2tags syntax
+au BufNewFile,BufRead *.t2t set ft=txt2tags
 
-map <C-k> :%py3f /usr/share/vim/addons/syntax/clang-format-4.0.py<CR>
-imap <C-k> :%py3f /usr/share/vim/addons/syntax/clang-format-4.0.py<CR>
+" Clang format
+map <C-k> :%pyf /usr/share/vim/addons/syntax/clang-format-4.0.py<CR>
+imap <C-K> <c-o> :%pyf /usr/share/vim/addons/syntax/clang-format-4.0.py<CR>
+
+
+"marks trailig spaces before enter
+set listchars=tab:>.,trail:.
+set list
 
 " Clear white spaces in file
 highlight ExtraWhitespace ctermbg=red guibg=red

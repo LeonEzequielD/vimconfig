@@ -1,8 +1,14 @@
 filetype plugin indent on
 syntax enable
+
+"Adding microsoft buttons
 source $VIMRUNTIME/mswin.vim
 behave mswin
-set ignorecase            " ignore case in search patterns
+
+"ignore case sensitive in greps
+set ignorecase
+
+
 set nocp
 filetype plugin on
 
@@ -178,4 +184,6 @@ au BufEnter * match ExtraWhitespace /\s\+$/
 au InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
 au InsertLeave * match ExtraWhiteSpace /\s\+$/
 
-
+"NERDTree
+let NERDTreeIgnore = ['\.sw[op]$']
+let NERDTreeShowHidden=1

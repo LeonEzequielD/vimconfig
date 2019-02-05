@@ -1,13 +1,45 @@
 filetype plugin indent on
 syntax enable
 
+"Installing VBundle for plugion Mgt
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
+set rtp+=~/.vim/bundle/Vundle.vim " set the runtime path to include Vundle and initialize
+call vundle#begin()
+Plugin 'VundleVim/Vundle.vim' " let Vundle manage Vundle, required
+
+Plugin 'tpope/vim-fugitive'
+Plugin 'shumphrey/fugitive-gitlab.vim'
+
+Plugin 'wincent/command-t'
+
+Plugin 'Valloric/YouCompleteMe'
+
+Plugin 'scrooloose/nerdtree'
+Plugin 'Xuyuanp/nerdtree-git-plugin'
+
+Plugin 'inkarkat/vim-spellcheck'
+
+call vundle#end()            " required
+filetype plugin indent on    " required
+
+
 "Adding microsoft buttons
 source $VIMRUNTIME/mswin.vim
 behave mswin
 
 "ignore case sensitive in greps
 set ignorecase
-
 
 set nocp
 filetype plugin on

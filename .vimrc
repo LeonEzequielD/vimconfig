@@ -18,17 +18,17 @@ set rtp+=~/.vim/bundle/Vundle.vim " set the runtime path to include Vundle and i
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim' " let Vundle manage Vundle, required
 
+Plugin 'Valloric/YouCompleteMe'
+
 Plugin 'tpope/vim-fugitive'
 Plugin 'shumphrey/fugitive-gitlab.vim'
-
-Plugin 'wincent/command-t'
-
-Plugin 'Valloric/YouCompleteMe'
 
 Plugin 'scrooloose/nerdtree'
 Plugin 'Xuyuanp/nerdtree-git-plugin'
 
+Plugin 'inkarkat/vim-ingo-library'
 Plugin 'inkarkat/vim-spellcheck'
+Plugin 'jiangmiao/auto-pairs'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -55,7 +55,6 @@ let g:DirDiffExcludes="CVS,*.class,*.exe,.*.swp,*.o,*.d,*.a,*.bb,*.bb,*.gcov"
 
 map <F3> :TlistToggle <Return>
 map <F4> :NERDTreeToggle<Return>
-map <F5> <C-w>bj<Return>10<C-w>-
 
 "find possible wrong doings in C
 map <F12> /[^ =><!\&\|*/+-]=\\|=[^ =]\\|[^ -][><]\\| [><][^ =]\\|\(if(\)\\|\(while(\)\\|\(switch(\)\\|\(for(\)\\|\(do{\)\\|while.*(.*)\n[ \t]*{\\|switch.*(.*)\n[ \t]*{\\|if.*(.*)\n[ \t]*{\\|for.*(.*)\n[ \t]*{\\|else.*\n[ \t]*{\\|[,;][^ \t]\\|[ \t]\n<Esc><Return>:<Esc>

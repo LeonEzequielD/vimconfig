@@ -78,7 +78,12 @@ map <C-PageUp> :bprev <Return>
 
 " Find words in all files in project
 map <silent> <F7> :Rgrep -w <cword> *.c *.h *.cpp *.hpp<CR><Return>
-imap <F7>  <Esc><F7>
+imap <F7> <Esc>:Rgrep -w <cword> *.c *.h *.cpp *.hpp<CR><Return>
+
+
+" Find words in all files in project
+map <silent> <F5> :terminal<CR><Return>
+imap <F5> <Esc>:terminal<CR><Return>
 
 " # - Dumb grep on a word
 map # :grep <cword> **/*.[ch]<Return><Return>:copen<Return>
@@ -101,29 +106,10 @@ set spl=en
 set nu
 "set tags+=.
 set tags+=tags
-"set tags+=/linuxppc/SELF/build/application/PD1200
-"set tags+=/linuxppc/SELF/build/application/DMlib
-"set tags+=../tags,../../tags,../../../tags,../../../../tags,../../../../../tags
 set shell=/bin/bash
-
-"function MBTOn()
-"   nnoremap <silent> <F8> :call MBTOff()<CR>
- "  let g:miniBufExplorerMoreThanOne=0
- "  TMiniBufExplorer
-  " "norm
-  " "nnoremap <buffer> <CR> :call LPenzMBESelectBuffer()<CR>:call MBTOff()<CR>:<BS>
-"endfunction
-"function MBTOff()
-"   nnoremap <silent> <F8> :call MBTOn()<CR>
-"   let g:miniBufExplorerMoreThanOne=99
-"   TMiniBufExplorer
-"endfunction
-"
-"
 
 aunmenu ToolBar.RunCtags
 amenu ToolBar.RunCtags :!ctags -R --exclude="_built/common/include/boost/*" .<CR>
-
 
 " Mappings for cscope
 set cscopequickfix=s-,g-,c-,t-,e-,f-,i-,d-
@@ -218,3 +204,7 @@ au InsertLeave * match ExtraWhiteSpace /\s\+$/
 "NERDTree
 let NERDTreeIgnore = ['\.sw[op]$']
 let NERDTreeShowHidden=1
+
+"Terminal
+set splitbelow
+hi Terminal ctermbg=black ctermfg=white guibg=black guifg=white
